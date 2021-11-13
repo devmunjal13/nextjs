@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { startWatchingEvents } from './api/ido'
 
 export default function Home() {
+  startWatchingEvents();
   return (
     <div className={styles.container}>
       <Head>

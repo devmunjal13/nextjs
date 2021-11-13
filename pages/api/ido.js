@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import config from "../../components/config"
+import config from "../../config"
 import ipfs from '../../ipfs';
 
 let contract = null;
@@ -569,7 +569,7 @@ const ABI = [
     }
 ];
 
-const startWatchingEvents = (res) => {
+export const startWatchingEvents = () => {
     data = [];
     config.CONTRACT_ADDRESS.map(async (e) => {
         console.log(e, "eee");
@@ -578,9 +578,9 @@ const startWatchingEvents = (res) => {
     })
 
     console.log(data, "data");
-    setTimeout(() => {
-        res.status(200).json({ "data": data });
-    }, 8000);
+    // setTimeout(() => {
+    //     res.status(200).json({ "data": data });
+    // }, 8000);
     // return data;
     // for (let i = 0; i < config.CONTRACT_ADDRESS.length; i++) {
     //     await initWeb3AndContract(config.CONTRACT_ADDRESS[i]);
@@ -622,7 +622,7 @@ const intilizeData = async (contract) => {
 
 
 export default async function handler(req, res) {
-    await startWatchingEvents(res);
-    // console.log(returnData, "return data");
-    // res.status(200).json({ "data": returnData })
+    console.log(data, "data");
+    res.status(200).json({ "data": data });
+    startWatchingEvents();
 }
